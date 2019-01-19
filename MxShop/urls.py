@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
+from rest_framework.documentation import include_docs_urls
 
 import xadmin
 from django.views.static import serve
 from MxShop.settings import MEDIA_ROOT
-from goods.views_base import GoodsListView
+from goods.views import GoodsListView
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
@@ -28,6 +28,6 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # 商品列表页
-    url(r'goods/$', GoodsListView.as_view(), name="goods-list")
-
+    url(r'goods/', GoodsListView.as_view(), name="goods-list"),
+    url(r'docs/', include_docs_urls(title="慕学生鲜")),
 ]
