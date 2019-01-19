@@ -142,8 +142,8 @@ STATICFILES_DIRS = (
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-REST_FRAMEWORK= {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 我也是醉了，分页自己写的居然是None
-    'PAGE_SIZE': 10,
-}
+# REST_FRAMEWORK= {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     # 我也是醉了，分页自己写的居然是None
+#     'PAGE_SIZE': 10,
+# }
