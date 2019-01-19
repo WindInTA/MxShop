@@ -24,10 +24,12 @@ from goods.views import GoodsListView
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'xadmin/', xadmin.site.urls),
-    url(r'^media/(<?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+    # url(r'^media/(<?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # 商品列表页
-    url(r'goods/', GoodsListView.as_view(), name="goods-list"),
-    url(r'docs/', include_docs_urls(title="慕学生鲜")),
+    url(r'goods/$', GoodsListView.as_view(), name="goods-list"),
+    url(r'docs/$', include_docs_urls(title="慕学生鲜")),
 ]

@@ -20,7 +20,7 @@ class UserProfile(AbstractUser):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.username
+        return self.username   # name 和 username里面要注意
 
 
 class VerifyCode(models.Model):
