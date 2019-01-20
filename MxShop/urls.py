@@ -15,16 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from rest_framework.documentation import include_docs_urls
+from rest_framework.routers import DefaultRouter
 
 import xadmin
 from django.views.static import serve
 from MxShop.settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet
 
-goods_list = GoodsListViewSet.as_view({
-    'get': 'list',
 
-})
+router = DefaultRouter()
+router.register(r'goods',GoodsListViewSet)
+# goods_list = GoodsListViewSet.as_view({
+#     'get': 'list',
+#
+# })
 
 
 urlpatterns = [
@@ -36,6 +40,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # 商品列表页
-    url(r'goods/', goods_list, name="goods-list"),
+    # url(r'goods/', goods_list, name="goods-list"),
+    url(r'^',include(router.urls)),
     url(r'docs/', include_docs_urls(title="慕学生鲜")),
 ]
