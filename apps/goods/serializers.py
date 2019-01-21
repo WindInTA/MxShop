@@ -27,6 +27,7 @@ class CategorySerializer(serializers.ModelSerializer):
 # 一个是ModelSerializer
 class GoodsSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+
     class Meta:
         model = Goods
         # fields = ('name', 'click_num', 'market_price', 'add_time',)

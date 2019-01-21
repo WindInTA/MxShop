@@ -32,8 +32,9 @@ class GoodsListView(View):
             json_list.append(json_dict)
         # 但是有些格式还是不能序列化，例如ImageFieldFies
 
-        json_data = serializers.serialize("json",goods)
+        json_data = serializers.serialize("json", goods)
         json_data = json.loads(json_data)
         from django.http import HttpResponse
-        # return HttpResponse(json.dumps(json_data), content_type="application/json")
-        return JsonResponse(json_data,safe=False )
+        # return HttpResponse(json.dumps(json_data),
+        # content_type="application/json")
+        return JsonResponse(json_data, safe=False)

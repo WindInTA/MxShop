@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'xadmin',
     'rest_framework',
+    'django_filters',
 
 ]
 
@@ -147,3 +148,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 #     # 我也是醉了，分页自己写的居然是None
 #     'PAGE_SIZE': 10,
 # }
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
