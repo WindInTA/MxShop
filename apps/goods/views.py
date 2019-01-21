@@ -2,12 +2,12 @@ from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
-from rest_framework import  filters
+from rest_framework import filters
 
 # from .filters import GoodsFilter
 from .filters import GoodsFilter
-from .serializers import GoodsSerializer
-from .models import Goods
+from .serializers import GoodsSerializer, CategorySerializer
+from .models import Goods, GoodsCategory
 
 
 # class GoodsListView(APIView):
@@ -61,3 +61,15 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     #         queryset = queryset.filter(shop_price__gt=int(price_min))
     #     return queryset
     # # 这个参数比较多，要重复写多变
+
+
+class CategoryViewset(mixins.ListModelMixin,  mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    list:
+        商品分类列表数据
+    retrieve:
+        获取商品分类详情
+    """
+    queryset = GoodsCategory.objects.filter(category_type=1)
+    serializer_class = CategorySerializer
+

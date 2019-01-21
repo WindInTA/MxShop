@@ -20,11 +20,17 @@ from rest_framework.routers import DefaultRouter
 import xadmin
 from django.views.static import serve
 from MxShop.settings import MEDIA_ROOT
-from goods.views import GoodsListViewSet
-
+from goods.views import GoodsListViewSet, CategoryViewset
 
 router = DefaultRouter()
+# 配置goods的url
 router.register(r'goods', GoodsListViewSet, base_name="goods")
+
+# 配置category的url
+router.register(r'categorys', CategoryViewset, base_name='categorys')
+
+#
+
 # goods_list = GoodsListViewSet.as_view({
 #     'get': 'list',
 #
@@ -42,5 +48,6 @@ urlpatterns = [
     # 商品列表页
     # url(r'goods/', goods_list, name="goods-list"),
     url(r'^',include(router.urls)),
+
     url(r'docs/', include_docs_urls(title="慕学生鲜")),
 ]
