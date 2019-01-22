@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',   # 前端代理 或者 django设置
-
+    'rest_framework.authtoken',   # authtoken
 ]
 
 MIDDLEWARE = [
@@ -155,5 +155,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
+
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.Token Authentication',
     ),
 }

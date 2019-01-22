@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 
 import xadmin
 from django.views.static import serve
@@ -44,6 +45,7 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-token-auth/', views.obtain_auth_token),
 
     # 商品列表页
     # url(r'goods/', goods_list, name="goods-list"),

@@ -1,10 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Boaz">
     <words>
+      <w>authtoken</w>
       <w>corsheaders</w>
       <w>filterset</w>
       <w>hong</w>
       <w>mxshop</w>
+      <w>pricemax</w>
+      <w>pricemin</w>
       <w>ueditor</w>
       <w>xadmin</w>
     </words>

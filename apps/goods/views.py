@@ -1,3 +1,4 @@
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
@@ -28,9 +29,9 @@ from .models import Goods, GoodsCategory
 
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 12
     page_size_query_param = 'page_size'
-    page_query_param = 'p'
+    page_query_param = 'page'
     max_page_size = 100
 
 
@@ -44,6 +45,7 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
     pagination_class = StandardResultsSetPagination
+    # authentication_classes = (TokenAuthentication, )
     # 分页
 
     filter_backends = (DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter)
@@ -51,9 +53,9 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     filter_class = GoodsFilter   # 字段匹配
 
-    search_fields = ('=name', 'goods_brief', 'goods_desc')
+    search_fields = ('name', 'goods_brief', 'goods_desc')
 
-    ordering_fields = ('sold_num', 'add_time')
+    ordering_fields = ('sold_num', 'shop_price')
     # def get_queryset(self):
     #     queryset = Goods.objects.all()
     #     price_min = self.request.query_params.get("price_min",0)
