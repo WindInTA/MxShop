@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 import xadmin
 from django.views.static import serve
@@ -39,17 +40,18 @@ router.register(r'categorys', CategoryViewset, base_name='categorys')
 
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
     url(r'xadmin/', xadmin.site.urls),
-    # url(r'^media/(<?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
-
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^api-token-auth/', views.obtain_auth_token),
 
     # 商品列表页
     # url(r'goods/', goods_list, name="goods-list"),
     url(r'^',include(router.urls)),
 
     url(r'docs/', include_docs_urls(title="慕学生鲜")),
+
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # DRF自带的token认证模式
+    url(r'^api-token-auth/', views.obtain_auth_token),
+    # jwt的认证接口
+    url(r'^jwt_auth', obtain_jwt_token)
 ]
