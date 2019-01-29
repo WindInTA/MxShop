@@ -45,9 +45,9 @@ urlpatterns = [
 
     # 商品列表页
     # url(r'goods/', goods_list, name="goods-list"),
-    url(r'^',include(router.urls)),
-
+    url(r'^', include(router.urls)),
     url(r'docs/', include_docs_urls(title="慕学生鲜")),
+
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # DRF自带的token认证模式
